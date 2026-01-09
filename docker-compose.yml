@@ -12,22 +12,6 @@ services:
     volumes:
       - tda_db:/var/lib/postgresql/data
 
-  tda-webui:
-    build:
-      context: tda-webui
-      dockerfile: Dockerfile
-    profiles: [ "fullstack" ]
-    container_name: tda-webui
-    depends_on:
-      - tda-db
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      APP_USERNAME: ${APP_USERNAME}
-      APP_PASSWORD: ${APP_PASSWORD}
-      APP_ALLOWED_ORIGINS: ${APP_ALLOWED_ORIGINS}
-    ports:
-      - "127.0.0.1:9001:9001"
-
   tda-core:
     build:
       context: tda-core
@@ -35,14 +19,32 @@ services:
     profiles: [ "fullstack" ]
     container_name: tda-core
     depends_on:
-      - tda-webui
+      - tda-db
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_USERNAME: ${APP_USERNAME}
+      APP_PASSWORD: ${APP_PASSWORD}
+    ports:
+      - "127.0.0.1:9000:9000"
+
+  tda-webui:
+    build:
+      context: tda-webui
+      dockerfile: Dockerfile
+    profiles: [ "fullstack" ]
+    container_name: tda-webui
+    depends_on:
+      - tda-core
     environment:
       SPRING_PROFILES_ACTIVE: docker
       APP_USERNAME: ${APP_USERNAME}
       APP_PASSWORD: ${APP_PASSWORD}
       APP_ALLOWED_ORIGINS: ${APP_ALLOWED_ORIGINS}
     ports:
-      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
 
 volumes:
   tda_db:
