@@ -1,8 +1,8 @@
 services:
 
-  mega-tda-db:
+  tda-db:
     image: postgres:16
-    container_name: mega-tda-db
+    container_name: tda-db
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -10,17 +10,16 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - mega_tda_db_data:/var/lib/postgresql/data
+      - tda_db:/var/lib/postgresql/data
 
-  tdawebui:
-    env_file:
-      - .env
+  tda-webui:
     build:
-      dockerfile: tda-webui/Dockerfile
+      context: tda-webui
+      dockerfile: Dockerfile
     profiles: [ "fullstack" ]
-    container_name: tdawebui
+    container_name: tda-webui
     depends_on:
-      - mega-tda-db
+      - tda-db
     environment:
       SPRING_PROFILES_ACTIVE: docker
       APP_USERNAME: ${APP_USERNAME}
@@ -29,5 +28,21 @@ services:
     ports:
       - "127.0.0.1:9001:9001"
 
+  tda-core:
+    build:
+      context: tda-core
+      dockerfile: Dockerfile
+    profiles: [ "fullstack" ]
+    container_name: tda-core
+    depends_on:
+      - tda-webui
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      APP_USERNAME: ${APP_USERNAME}
+      APP_PASSWORD: ${APP_PASSWORD}
+      APP_ALLOWED_ORIGINS: ${APP_ALLOWED_ORIGINS}
+    ports:
+      - "127.0.0.1:9000:9000"
+
 volumes:
-  mega_tda_db_data:
+  tda_db:

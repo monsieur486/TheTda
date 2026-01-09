@@ -1,0 +1,19 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+
+  application:
+    name: tda-webui
+
+  web:
+    resources:
+      add-mappings: false
+
+  security:
+    user:
+      name: ${APP_USERNAME}
+      password: ${APP_PASSWORD}
+
+server:
+  port: ${TDA_WEBUI_PORT}
