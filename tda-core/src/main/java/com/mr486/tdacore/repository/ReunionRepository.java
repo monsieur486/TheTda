@@ -1,7 +1,7 @@
 package com.mr486.tdacore.repository;
 
 
-import com.mr486.tdacore.model.Reunion;
+import com.mr486.tdacore.persistance.Reunion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

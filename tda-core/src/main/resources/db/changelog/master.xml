@@ -4,4 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <include file="db/changelog/001-create_reunions.sql"/>
+    <include file="db/changelog/002-create_amis.sql"/>
+    <include file="db/changelog/003-fixtures_amis.sql"/>
+    <include file="db/changelog/004-create_joueurs.sql"/>
 </databaseChangeLog>

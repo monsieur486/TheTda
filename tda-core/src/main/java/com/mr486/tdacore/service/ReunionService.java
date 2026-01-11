@@ -1,6 +1,6 @@
 package com.mr486.tdacore.service;
 
-import com.mr486.tdacore.model.Reunion;
+import com.mr486.tdacore.persistance.Reunion;
 import com.mr486.tdacore.repository.ReunionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

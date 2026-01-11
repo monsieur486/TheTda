@@ -1,4 +1,4 @@
-package com.mr486.tdacore.model;
+package com.mr486.tdacore.persistance;
 
 import jakarta.persistence.*;
 import lombok.Getter;

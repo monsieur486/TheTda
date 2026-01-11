@@ -1,0 +1,21 @@
+meta {
+  name: Touts les amis
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://127.0.0.1:9000/api/private/amis
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: mdj
+  password: Mdp12345+
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

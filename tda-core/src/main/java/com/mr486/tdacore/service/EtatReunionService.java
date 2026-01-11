@@ -15,7 +15,7 @@ public class EtatReunionService {
         EtatReunion etatReunion = new EtatReunion();
         Integer statusReunionActive = reunionService.reunionActiveStatus();
         if(statusReunionActive==0){
-            throw new TdaException("La reunion est en erreur");
+            throw new TdaException("La reunion active est en erreur !!!");
         }
         etatReunion.setStatus(statusReunionActive);
         return etatReunion;
