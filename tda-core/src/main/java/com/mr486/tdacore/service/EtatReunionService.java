@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class EtatReunionService {
 
     private final ReunionService reunionService;
+    private final JoueurService joueurService;
 
     public EtatReunion getEtatServeur() {
         EtatReunion etatReunion = new EtatReunion();
@@ -18,6 +19,7 @@ public class EtatReunionService {
             throw new TdaException("La reunion active est en erreur !!!");
         }
         etatReunion.setStatus(statusReunionActive);
+        etatReunion.setNbJoueurs(joueurService.getNbJoueur());
         return etatReunion;
     }
 }

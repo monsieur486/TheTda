@@ -13,12 +13,14 @@ import java.util.List;
 @Builder
 public class EtatReunion {
     private Integer status;
+    private Integer nbJoueurs;
     private List<PointJoueur> scores;
     private List<String> parties;
     private InfoGraphique infoGraphique;
 
     public EtatReunion() {
         this.status = 0;
+        this.nbJoueurs = 0;
         this.scores = new java.util.ArrayList<>();
         this.parties = new java.util.ArrayList<>();
         this.infoGraphique = new InfoGraphique();

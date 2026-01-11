@@ -1,0 +1,21 @@
+meta {
+  name: Touts les joueurs inscrits
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://127.0.0.1:9000/api/private/joueurs
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: mdj
+  password: Mdp12345+
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

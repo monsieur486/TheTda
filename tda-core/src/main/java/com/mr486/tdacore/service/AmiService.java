@@ -1,6 +1,8 @@
 package com.mr486.tdacore.service;
 
+import com.mr486.tdacore.configuration.ApplicationConfiguration;
 import com.mr486.tdacore.dto.AmiListe;
+import com.mr486.tdacore.exeption.TdaException;
 import com.mr486.tdacore.persistance.Ami;
 import com.mr486.tdacore.repository.AmiRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +29,7 @@ public class AmiService {
             Integer id = ami.getId();
             String nom = ami.getNom();
             if (ami.getIsGuest()) {
-                nom += "⭐";
+                nom += ApplicationConfiguration.IMAGE_GUEST;
             }
             AmiListe amiListe = AmiListe.builder()
                     .id(id)
@@ -37,5 +39,17 @@ public class AmiService {
         }
 
         return amis;
+    }
+
+    public Boolean existeAmi(Integer id){
+        return amiRepository.existsById(id);
+    }
+
+    public Ami getAmiById(Integer id){
+        Ami ami = amiRepository.findById(id).orElse(null);
+       if(ami==null){
+           throw new TdaException("Ami avec id " + id + " n'existe pas !!!");
+       }
+       return ami;
     }
 }

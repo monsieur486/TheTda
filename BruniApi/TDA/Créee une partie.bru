@@ -1,0 +1,31 @@
+meta {
+  name: Créee une partie
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://127.0.0.1:9000/api/private/joueurs
+  body: json
+  auth: basic
+}
+
+auth:basic {
+  username: mdj
+  password: Mdp12345+
+}
+
+body:json {
+  [
+    2,
+    3,
+    4,
+    6,
+    7
+  ]
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
