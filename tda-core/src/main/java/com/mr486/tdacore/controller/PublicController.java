@@ -2,6 +2,7 @@ package com.mr486.tdacore.controller;
 
 import com.mr486.tdacore.dto.EtatReunion;
 import com.mr486.tdacore.service.EtatReunionService;
+import com.mr486.tdacore.service.ReunionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
