@@ -14,4 +14,5 @@ import org.springframework.stereotype.Component;
 public class AmiListe {
     private Integer id;
     private String nom;
+    private String imageUrl;
 }

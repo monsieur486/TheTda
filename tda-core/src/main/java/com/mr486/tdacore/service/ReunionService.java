@@ -35,7 +35,7 @@ public class ReunionService {
         return getReunionActive().getStatus();
     }
 
-    public UUID getReunionActiveUuid(){
+    public UUID getReunionActiveUuid() {
         return getReunionActive().getUuid();
     }
 }

@@ -1,11 +1,11 @@
 meta {
-  name: Créee unemauvaise partie
+  name: Mauvais id
   type: http
   seq: 7
 }
 
 post {
-  url: http://127.0.0.1:9000/api/private/joueurs
+  url: http://127.0.0.1:9000/api/private/game/create
   body: json
   auth: basic
 }
@@ -22,7 +22,6 @@ body:json {
     1,
     2,
     3,
-    2,
     12
   ]
 }

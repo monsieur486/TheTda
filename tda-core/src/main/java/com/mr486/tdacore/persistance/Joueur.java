@@ -18,6 +18,5 @@ public class Joueur {
     @Id()
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
-    private UUID reunionUuid;
     private Integer amiId;
 }

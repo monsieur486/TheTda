@@ -7,4 +7,5 @@
     <include file="db/changelog/002-create_amis.sql"/>
     <include file="db/changelog/003-fixtures_amis.sql"/>
     <include file="db/changelog/004-create_joueurs.sql"/>
+    <include file="db/changelog/005-create_parties.sql"/>
 </databaseChangeLog>

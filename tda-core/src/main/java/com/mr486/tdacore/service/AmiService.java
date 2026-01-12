@@ -17,6 +17,7 @@ import java.util.List;
 public class AmiService {
 
     private final AmiRepository amiRepository;
+    private final ImageService imageService;
 
     public List<AmiListe> getListeAmis() {
         List<AmiListe> amis = new ArrayList<>();
@@ -28,12 +29,14 @@ public class AmiService {
         for (Ami ami : amisDb) {
             Integer id = ami.getId();
             String nom = ami.getNom();
+            String imageUrl = imageService.getImageUrl(ami.getId());
             if (ami.getIsGuest()) {
                 nom += ApplicationConfiguration.IMAGE_GUEST;
             }
             AmiListe amiListe = AmiListe.builder()
                     .id(id)
                     .nom(nom)
+                    .imageUrl(imageUrl)
                     .build();
             amis.add(amiListe);
         }
@@ -41,15 +44,15 @@ public class AmiService {
         return amis;
     }
 
-    public Boolean existeAmi(Integer id){
+    public Boolean existeAmi(Integer id) {
         return amiRepository.existsById(id);
     }
 
-    public Ami getAmiById(Integer id){
+    public Ami getAmiById(Integer id) {
         Ami ami = amiRepository.findById(id).orElse(null);
-       if(ami==null){
-           throw new TdaException("Ami avec id " + id + " n'existe pas !!!");
-       }
-       return ami;
+        if (ami == null) {
+            throw new TdaException("Ami avec id " + id + " n'existe pas !!!");
+        }
+        return ami;
     }
 }
