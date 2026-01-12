@@ -10,16 +10,20 @@ import org.springframework.stereotype.Service;
 public class EtatReunionService {
 
     private final ReunionService reunionService;
-    private final JoueurService joueurService;
+    private final ResumeService resumeService;
 
     public EtatReunion getEtatServeur() {
         EtatReunion etatReunion = new EtatReunion();
         Integer statusReunionActive = reunionService.reunionActiveStatus();
-        if(statusReunionActive==0){
+        if (statusReunionActive == 0) {
             throw new TdaException("La reunion active est en erreur !!!");
         }
         etatReunion.setStatus(statusReunionActive);
-        etatReunion.setNbJoueurs(joueurService.getNbJoueur());
+        if (statusReunionActive == 1) {
+            etatReunion.setResume("En attente de joueurs...");
+        } else {
+            etatReunion.setResume(resumeService.createResume());
+        }
         return etatReunion;
     }
 }

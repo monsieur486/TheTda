@@ -10,7 +10,10 @@ import java.util.UUID;
 
 @Repository
 public interface PartieRepository extends JpaRepository<Partie, Integer> {
-    Optional<Partie> findPartieByUuid(UUID uuid);
+
+    Optional<Partie> findPartieByNumeroPartie(Integer numeroPartie);
 
     List<Partie> findAllByOrderByNumeroPartieAsc();
+
+    Partie findByUuid(UUID uuid);
 }

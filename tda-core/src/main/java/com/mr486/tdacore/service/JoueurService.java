@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,9 +49,9 @@ public class JoueurService {
             joueurs.add(new JoueurListe(id, nom));
         }
         joueurs.sort(Comparator.comparing(JoueurListe::getNom));
-        Deque<JoueurListe> deque = new ArrayDeque<>(joueurs);
-        deque.addFirst(new JoueurListe(0, "A définir"));
-        joueurs = new ArrayList<>(deque);
+        //Deque<JoueurListe> deque = new ArrayDeque<>(joueurs);
+        //deque.addFirst(new JoueurListe(0, "A définir"));
+        //joueurs = new ArrayList<>(deque);
         return joueurs;
     }
 

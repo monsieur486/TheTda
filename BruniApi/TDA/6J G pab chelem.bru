@@ -1,0 +1,35 @@
+meta {
+  name: 6J G pab chelem
+  type: http
+  seq: 16
+}
+
+post {
+  url: http://127.0.0.1:9000/api/private/game/partie
+  body: json
+  auth: basic
+}
+
+auth:basic {
+  username: mdj
+  password: Mdp12345+
+}
+
+body:json {
+  {
+      "contratId": 3,
+      "preneurId": 3,
+      "appelId": 7,
+      "mortId": 8,
+      "estFait": true,
+      "score": 50,
+      "petitAuBoutId": 6,
+      "chelem": true,
+      "capot": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

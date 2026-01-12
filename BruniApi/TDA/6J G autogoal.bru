@@ -1,0 +1,35 @@
+meta {
+  name: 6J G autogoal
+  type: http
+  seq: 13
+}
+
+post {
+  url: http://127.0.0.1:9000/api/private/game/partie
+  body: json
+  auth: basic
+}
+
+auth:basic {
+  username: mdj
+  password: Mdp12345+
+}
+
+body:json {
+  {
+      "contratId": 3,
+      "preneurId": 3,
+      "appelId": 3,
+      "mortId": 8,
+      "estFait": false,
+      "score": 20,
+      "petitAuBoutId": 0,
+      "chelem": false,
+      "capot": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
