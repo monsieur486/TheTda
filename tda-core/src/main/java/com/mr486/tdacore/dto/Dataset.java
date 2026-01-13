@@ -1,5 +1,6 @@
 package com.mr486.tdacore.dto;
 
+import com.mr486.tdacore.configuration.ApplicationConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +11,11 @@ import java.util.List;
 
 @Component
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class InfoGraphique {
-    private List<Integer> labels;
-    private List<Dataset> datasets;
+public class Dataset {
+    private String label;
+    private List<Integer> data;
+    private int borderwith;
 }

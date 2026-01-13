@@ -102,7 +102,9 @@ public class ResumeService {
         if(capot > 0){
             resume.append(capot).append("\uD83D\uDE2D ");
         }
-        resume.append(getTxReussite(txParties, reussite));
+        if (txParties > 0) {
+            resume.append(getTxReussite(txParties, reussite));
+        }
 
         return resume.toString();
     }

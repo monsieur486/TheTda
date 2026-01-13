@@ -16,13 +16,15 @@ public class EtatReunion {
     private String resume;
     private List<PointJoueur> scores;
     private List<String> parties;
-    private InfoGraphique infoGraphique;
+    private List<Integer> labels;
+    private List<Dataset> datasets;
 
     public EtatReunion() {
         this.status = 0;
         this.resume = "";
         this.scores = new java.util.ArrayList<>();
         this.parties = new java.util.ArrayList<>();
-        this.infoGraphique = new InfoGraphique();
+        this.labels = new java.util.ArrayList<>();
+        this.datasets = new java.util.ArrayList<>();
     }
 }
