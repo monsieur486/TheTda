@@ -1,6 +1,5 @@
 package com.mr486.tdacore.dto;
 
-import com.mr486.tdacore.configuration.ApplicationConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

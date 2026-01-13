@@ -18,21 +18,21 @@ public class InfoGraphiqueService {
     private final PartieService partieService;
     private final ToolScoreService toolScoreService;
 
-    public List<Integer> getLabels(){
+    public List<Integer> getLabels() {
         int nbParties = partieService.getNbPartie();
         List<Integer> labels = new ArrayList<>();
         labels.add(0);
-        for(int i = 1; i <= nbParties; i++){
+        for (int i = 1; i <= nbParties; i++) {
             labels.add(i);
         }
         return labels;
     }
 
-    public List<Dataset> getDatasets(){
+    public List<Dataset> getDatasets() {
         List<Partie> parties = partieService.getAllParties();
         List<JoueurListe> joueurs = joueurService.getJoueursInscrits();
         List<Dataset> datasets = new ArrayList<>();
-        for(JoueurListe joueur : joueurs){
+        for (JoueurListe joueur : joueurs) {
             Dataset dataset = new Dataset();
             dataset.setLabel(joueur.getNom());
             dataset.setData(getDatas(joueurs.size(), parties, joueur.getId()));
@@ -44,11 +44,11 @@ public class InfoGraphiqueService {
 
     }
 
-    private List<Integer> getDatas(int nbJoueurs, List<Partie> parties, int joueurId){
+    private List<Integer> getDatas(int nbJoueurs, List<Partie> parties, int joueurId) {
         List<Integer> datas = new ArrayList<>();
         int points = 0;
         List<Integer> deltas = toolScoreService.listeDelta(nbJoueurs, parties, joueurId);
-        for(int delta : deltas){
+        for (int delta : deltas) {
             points += delta;
             datas.add(points);
         }

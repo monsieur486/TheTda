@@ -32,18 +32,18 @@ public class JoueurService {
         joueurRepository.deleteAll();
     }
 
-    public Integer getNbJoueur(){
+    public Integer getNbJoueur() {
         return joueurRepository.findAll().size();
     }
 
-    public List<JoueurListe> getJoueursInscrits(){
+    public List<JoueurListe> getJoueursInscrits() {
         List<JoueurListe> joueurs = new ArrayList<>();
         List<Joueur> joueursDB = joueurRepository.findAll();
-        for(Joueur joueur : joueursDB){
+        for (Joueur joueur : joueursDB) {
             Ami ami = amiService.getAmiById(joueur.getAmiId());
             Integer id = ami.getId();
             String nom = ami.getNom();
-            if(ami.getIsGuest()){
+            if (ami.getIsGuest()) {
                 nom += ApplicationConfiguration.IMAGE_GUEST;
             }
             joueurs.add(new JoueurListe(id, nom));
