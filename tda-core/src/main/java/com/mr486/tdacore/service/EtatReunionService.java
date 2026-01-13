@@ -11,6 +11,7 @@ public class EtatReunionService {
 
     private final ReunionService reunionService;
     private final ResumeService resumeService;
+    private final DetailPartieService detailPartieService;
 
     public EtatReunion getEtatServeur() {
         EtatReunion etatReunion = new EtatReunion();
@@ -24,6 +25,7 @@ public class EtatReunionService {
         } else {
             etatReunion.setResume(resumeService.createResume());
         }
+        etatReunion.setParties(detailPartieService.getDetails());
         return etatReunion;
     }
 }

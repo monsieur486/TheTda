@@ -90,7 +90,6 @@ public class ResumeService {
         if(nbGardesContre > 0){
             resume.append(nbGardesContre).append(contratService.getContratById(5).getInitiale()).append(" ");
         }
-        resume.append("\n");
         if(autogoal > 0){
             resume.append(autogoal).append("⚽ ");
         }
