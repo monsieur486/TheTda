@@ -73,15 +73,18 @@ public class GameManagement {
     public void cagnotte() {
         int status = reunionService.reunionActiveStatus();
         if (status == 1) {
-            throw new TdaException("La reunion n'a pas démarée !!!");
+            throw new TdaException("La réunion n'a pas démarée !!!");
         }
         reunionService.setReunionActiveStatus(3);
     }
 
     public void addPartie(PartieForm partieForm) {
         int status = reunionService.reunionActiveStatus();
-        if (status != 2) {
-            throw new TdaException("La reunion n'est pas en cours !!!");
+        if (status == 1) {
+            throw new TdaException("La réunion n'a pas démarée !!!");
+        }
+        if (status == 3) {
+            throw new TdaException("La réunion est terminée !!!");
         }
         partieService.addPartie(partieForm);
     }

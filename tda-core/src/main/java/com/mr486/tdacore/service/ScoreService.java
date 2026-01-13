@@ -19,6 +19,8 @@ public class ScoreService {
     private final PartieService partieService;
     private final JoueurService joueurService;
     private final ToolScoreService toolScoreService;
+    private final ReunionService reunionService;
+    private final AmiService amiService;
 
     public List<PointJoueur> getScores() {
         int nbJoueurs = joueurService.getNbJoueur();
@@ -45,7 +47,13 @@ public class ScoreService {
 
     private PointJoueur colorScore(JoueurListe joueur, int score) {
         PointJoueur pointColor = new PointJoueur();
-        pointColor.setNom(joueur.getNom());
+        String nom = joueur.getNom();
+        if(reunionService.reunionActiveStatus()==3){
+            if(!estGuest(joueur.getId())){
+                nom += cagnotte(score);
+            }
+        }
+        pointColor.setNom(nom);
         pointColor.setScore(score);
         if (score > 0) {
             pointColor.setColor(ApplicationConfiguration.COLOR_POSITIVE);
@@ -55,5 +63,21 @@ public class ScoreService {
             pointColor.setColor(ApplicationConfiguration.COLOR_NEUTRAL);
         }
         return pointColor;
+    }
+
+    private Boolean estGuest(Integer id) {
+        return amiService.getAmiById(id).getIsGuest();
+    }
+
+    private String cagnotte(int score){
+        if(score > -10){
+            return " 2.00 €";
+        } else {
+            score = score * -1;
+            double cagnotte = Math.abs(2000 + score*3) / 1000.0;
+            cagnotte = Math.round(cagnotte * 10.0) / 10.0;
+            String resultat = String.format("%.2f", cagnotte);
+            return " " + resultat + " €";
+        }
     }
 }
