@@ -17,7 +17,7 @@ import java.util.List;
 public class AmiService {
 
     private final AmiRepository amiRepository;
-    private final ImageService imageService;
+    private final TrombineService trombineService;
 
     public List<AmiListe> getListeAmis() {
         List<AmiListe> amis = new ArrayList<>();
@@ -29,7 +29,7 @@ public class AmiService {
         for (Ami ami : amisDb) {
             Integer id = ami.getId();
             String nom = ami.getNom();
-            String imageUrl = imageService.getImageUrl(ami.getId());
+            String imageUrl = trombineService.getImageUrl(ami.getId());
             if (ami.getIsGuest()) {
                 nom += ApplicationConfiguration.IMAGE_GUEST;
             }

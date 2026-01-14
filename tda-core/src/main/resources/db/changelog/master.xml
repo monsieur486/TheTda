@@ -8,4 +8,6 @@
     <include file="db/changelog/003-fixtures_amis.sql"/>
     <include file="db/changelog/004-create_joueurs.sql"/>
     <include file="db/changelog/005-create_parties.sql"/>
+    <include file="db/changelog/006-create_trombines.sql"/>
+    <include file="db/changelog/007-fixtures_trombines.sql"/>
 </databaseChangeLog>

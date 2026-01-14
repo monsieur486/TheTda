@@ -1,9 +1,9 @@
 INSERT INTO amis (nom, image_id, is_guest) VALUES
 ('Guest', 1, TRUE),
-('Bernard', 1, TRUE),
-('Dan', 1, FALSE),
-('Etienne', 1, FALSE),
+('Bernard', 2, TRUE),
+('Dan', 3, FALSE),
+('Etienne', 4, FALSE),
 ('Fanny', 1, TRUE),
-('Fabrice', 1, FALSE),
-('JP', 1, FALSE),
-('Laurent', 1, FALSE);
+('Fabrice', 5, FALSE),
+('JP', 6, FALSE),
+('Laurent', 7, FALSE);
