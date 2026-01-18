@@ -2,7 +2,6 @@ spring:
   config:
     import: optional:file:.env[.properties]
 
-
   application:
     name: tda-webui
 
@@ -10,13 +9,16 @@ spring:
     resources:
       add-mappings: false
 
-  security:
-    user:
-      name: ${APP_USERNAME}
-      password: ${APP_PASSWORD}
+security:
+  app-user:
+    name: ${APP_USERNAME}
+    password: ${APP_PASSWORD}
 
 server:
   port: 9001
 
-tda_core:
-  API_URL: http://tda-core:9000
+app:
+  cors:
+    allowed-origin: ${APP_ALLOWED_ORIGINS}
+  tda-core:
+    api-url: ${APP_CORE_URL}

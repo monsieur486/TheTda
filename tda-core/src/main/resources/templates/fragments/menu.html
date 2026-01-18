@@ -1,0 +1,41 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu">
+    <nav class="navbar bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">TDA</a>
+            <a class="navbar-brand"
+               href="/admin/reunion"
+               sec:authorize="isAuthenticated()">📝 Réunion</a>
+            <button aria-controls="offcanvasNavbar" aria-label="Toggle navigation" class="navbar-toggler"
+                    data-bs-target="#offcanvasNavbar"
+                    data-bs-toggle="offcanvas" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div aria-labelledby="offcanvasNavbarLabel" class="offcanvas offcanvas-end" id="offcanvasNavbar"
+                 tabindex="-1">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Connexion</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <form method="post" sec:authorize="isAnonymous()" th:action="@{/login}">
+                        <div><label>
+                            <input name="username" placeholder="Utilisateur" type="text"/>
+                        </label></div>
+                        <div><label>
+                            <input name="password" placeholder="Mot de passe" type="password"/>
+                        </label></div>
+                        <button type="submit">Se connecter</button>
+                        <div th:if="${param.error}">Identifiants invalides.</div>
+                    </form>
+                    <form method="post" sec:authorize="isAuthenticated()" th:action="@{/logout}">
+                        <button type="submit">Déconnexion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+</html>

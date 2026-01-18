@@ -29,7 +29,7 @@ public class AmiService {
         for (Ami ami : amisDb) {
             Integer id = ami.getId();
             String nom = ami.getNom();
-            String imageUrl = trombineService.getImageUrl(ami.getId());
+            String imageUrl = trombineService.getImageUrl(ami.getImageId());
             if (ami.getIsGuest()) {
                 nom += ApplicationConfiguration.IMAGE_GUEST;
             }
