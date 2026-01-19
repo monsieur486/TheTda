@@ -5,10 +5,6 @@ spring:
   application:
     name: tda-webui
 
-  web:
-    resources:
-      add-mappings: false
-
 security:
   app-user:
     name: ${APP_USERNAME}
@@ -16,9 +12,10 @@ security:
 
 server:
   port: 9001
+  address: 0.0.0.0
 
 app:
   cors:
     allowed-origin: ${APP_ALLOWED_ORIGINS}
   tda-core:
-    api-url: ${APP_CORE_URL}
+    api-url: http://tda-core:9000

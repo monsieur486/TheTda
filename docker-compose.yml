@@ -27,7 +27,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       APP_USERNAME: ${APP_USERNAME}
       APP_PASSWORD: ${APP_PASSWORD}
-      APP_WEBUI_URL: ${APP_WEBUI_URL}
     ports:
       - "9000:9000"
 
@@ -44,7 +43,6 @@ services:
       APP_USERNAME: ${APP_USERNAME}
       APP_PASSWORD: ${APP_PASSWORD}
       APP_ALLOWED_ORIGINS: ${APP_ALLOWED_ORIGINS}
-      APP_CORE_URL: ${APP_CORE_URL}
     ports:
       - "9001:9001"
 

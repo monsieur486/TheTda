@@ -21,11 +21,10 @@ function updateState(state) {
 }
 
 function recuperationData(){
-    console.log("API:" + apiUrl);
-    axios.get(apiUrl)
+    axios.get('/api/public/etatReunion')
         .then(response => {
             const data = response.data;
-            console.log(data);
+            console.log(data.resume);
         })
         .catch(error => {
             console.error("Erreur lors de la récupération des information :", error);

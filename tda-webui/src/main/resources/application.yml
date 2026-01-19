@@ -12,9 +12,10 @@ security:
 
 server:
   port: 9001
+  address: 0.0.0.0
 
 app:
   cors:
     allowed-origin: ${APP_ALLOWED_ORIGINS}
   tda-core:
-    api-url: ${APP_CORE_URL}
+    api-url: http://localhost:9000

@@ -31,4 +31,4 @@ server:
   address: 0.0.0.0
 
 webui:
-  cors_url: ${APP_WEBUI_URL}
+  cors_url: http://tda-webui:9001
