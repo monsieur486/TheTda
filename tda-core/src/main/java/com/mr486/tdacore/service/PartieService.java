@@ -68,6 +68,9 @@ public class PartieService {
     }
 
     private void verification(PartieForm partieForm) {
+
+        int nombreJoueur = joueurService.getNbJoueur();
+
         if (partieForm.getContratId() > 7 || partieForm.getContratId() < 1) {
             throw new TdaException("Contrat invalide !!!");
         }
@@ -106,18 +109,29 @@ public class PartieService {
             }
         }
 
-        int nombreJoueur = joueurService.getNbJoueur();
         if (partieForm.getContratId() > 1) {
             if (partieForm.getPreneurId() == 0) {
                 throw new TdaException("Il n'y a pas preneur indiqué !!!");
             }
-        }
-
-        if (nombreJoueur > 4) {
-            if (partieForm.getContratId() > 1) {
+            if (nombreJoueur > 4) {
                 if (partieForm.getAppelId() == 0) {
                     throw new TdaException("Il n'y a pas appel indiqué !!!");
                 }
+            }
+
+        }
+
+        if (nombreJoueur == 4) {
+            if(partieForm.getAppelId()!=0){
+                throw new TdaException("Il n'y a pas appel à 4 joueurs !!!");
+            }
+            if(partieForm.getMortId()!=0){
+                throw new TdaException("Il n'y a pas mort à 4 joueurs !!!");
+            }
+        }
+        if (nombreJoueur == 5) {
+            if(partieForm.getMortId()!=0){
+                throw new TdaException("Il n'y a pas mort à 5 joueurs !!!");
             }
         }
 
@@ -135,7 +149,6 @@ public class PartieService {
                 throw new TdaException("Le petit au bout et le mort sont identiques !!!");
             }
         }
-
     }
 
 }

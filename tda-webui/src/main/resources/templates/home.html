@@ -11,7 +11,8 @@
 <div class="container-fluid">
     <div id="top-offset"></div>
     <div id="error"></div>
-    <div class="custom-tabs" th:if="${etape > 1}">
+</div>
+<div class="custom-tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button
@@ -61,12 +62,7 @@
                 <div th:replace="~{fragments/manches :: manches}"></div>
             </div>
         </div>
-    </div>
-    <div id="no-joueurs" th:if="${etape == 1}">
-        <p>En attente de joueurs</p>
-    </div>
 </div>
-
 <div th:replace="~{fragments/footer :: footer}"></div>
 <div id="status">🟡 Connexion en cours...</div>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>

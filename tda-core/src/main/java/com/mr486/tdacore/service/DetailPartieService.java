@@ -47,7 +47,7 @@ public class DetailPartieService {
             }
             sb.append(partie.getScore());
             if (partie.getPetitAuBoutId() > 0) {
-                sb.append(" 1️⃣");
+                sb.append(" 1️⃣: ");
                 sb.append(amiService.getAmiById(partie.getPetitAuBoutId()).getNom());
             }
             if (partie.getChelem()) {
