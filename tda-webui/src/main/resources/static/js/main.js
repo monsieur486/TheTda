@@ -42,6 +42,7 @@ function showData(data) {
     if(status > 1){
         afficheScores(scores);
         afficheParties(data.parties);
+        afficheGraph(labels, datasets);
     }
 }
 
@@ -106,6 +107,32 @@ function escapeHtml(str) {
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#39;');
+}
+
+function afficheGraph(labels, datasets) {
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            animations: {
+                tension: {
+                    duration: 1500,
+                    easing: 'linear',
+                    from: 0.5,
+                    to: 0,
+                    loop: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 connect();
