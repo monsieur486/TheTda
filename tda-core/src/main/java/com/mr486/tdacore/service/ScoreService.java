@@ -48,8 +48,8 @@ public class ScoreService {
     private PointJoueur colorScore(JoueurListe joueur, int score) {
         PointJoueur pointColor = new PointJoueur();
         String nom = joueur.getNom();
-        if(reunionService.reunionActiveStatus()==3){
-            if(!estGuest(joueur.getId())){
+        if (reunionService.reunionActiveStatus() == 3) {
+            if (!estGuest(joueur.getId())) {
                 nom += cagnotte(score);
             }
         }
@@ -69,12 +69,12 @@ public class ScoreService {
         return amiService.getAmiById(id).getIsGuest();
     }
 
-    private String cagnotte(int score){
-        if(score > -10){
+    private String cagnotte(int score) {
+        if (score > -10) {
             return " 2.00 €";
         } else {
             score = score * -1;
-            double cagnotte = Math.abs(2000 + score*3) / 1000.0;
+            double cagnotte = Math.abs(2000 + score * 3) / 1000.0;
             cagnotte = Math.round(cagnotte * 10.0) / 10.0;
             String resultat = String.format("%.2f", cagnotte);
             return " " + resultat + " €";

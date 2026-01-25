@@ -11,22 +11,22 @@
 <body>
 <div class="container mt-4">
     <h2>Nouvelle Partie</h2>
-    <form th:action="@{/api/private/game/partie}" th:object="${partieForm}" method="post">
+    <form method="post" th:action="@{/api/private/game/partie}" th:object="${partieForm}">
         <div class="row">
             <!-- Liste des Contrats -->
             <div class="col-md-6 mb-3">
-                <label for="contratId" class="form-label">Contrat</label>
-                <select id="contratId" th:field="*{contratId}" class="form-select">
-                    <option th:each="c : ${contrats}" th:value="${c.id}" th:text="${c.nom}"></option>
+                <label class="form-label" for="contratId">Contrat</label>
+                <select class="form-select" id="contratId" th:field="*{contratId}">
+                    <option th:each="c : ${contrats}" th:text="${c.nom}" th:value="${c.id}"></option>
                 </select>
             </div>
 
             <!-- Preneur -->
             <div class="col-md-6 mb-3">
-                <label for="preneurId" class="form-label">Preneur</label>
-                <select id="preneurId" th:field="*{preneurId}" class="form-select">
+                <label class="form-label" for="preneurId">Preneur</label>
+                <select class="form-select" id="preneurId" th:field="*{preneurId}">
                     <option value="0">-- Choisir un joueur --</option>
-                    <option th:each="j : ${joueurs}" th:value="${j.id}" th:text="${j.nom}"></option>
+                    <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                 </select>
             </div>
         </div>
@@ -34,28 +34,28 @@
         <div class="row">
             <!-- Appel -->
             <div class="col-md-4 mb-3">
-                <label for="appelId" class="form-label">Appelé (si applicable)</label>
-                <select id="appelId" th:field="*{appelId}" class="form-select">
+                <label class="form-label" for="appelId">Appelé (si applicable)</label>
+                <select class="form-select" id="appelId" th:field="*{appelId}">
                     <option value="0">-- Choisir un joueur --</option>
-                    <option th:each="j : ${joueurs}" th:value="${j.id}" th:text="${j.nom}"></option>
+                    <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                 </select>
             </div>
 
             <!-- Mort -->
             <div class="col-md-4 mb-3">
-                <label for="mortId" class="form-label">Mort</label>
-                <select id="mortId" th:field="*{mortId}" class="form-select">
+                <label class="form-label" for="mortId">Mort</label>
+                <select class="form-select" id="mortId" th:field="*{mortId}">
                     <option value="0">Aucun</option>
-                    <option th:each="j : ${joueurs}" th:value="${j.id}" th:text="${j.nom}"></option>
+                    <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                 </select>
             </div>
 
             <!-- Petit au Bout -->
             <div class="col-md-4 mb-3">
-                <label for="petitAuBoutId" class="form-label">Petit au bout</label>
-                <select id="petitAuBoutId" th:field="*{petitAuBoutId}" class="form-select">
+                <label class="form-label" for="petitAuBoutId">Petit au bout</label>
+                <select class="form-select" id="petitAuBoutId" th:field="*{petitAuBoutId}">
                     <option value="0">Aucun</option>
-                    <option th:each="j : ${joueurs}" th:value="${j.id}" th:text="${j.nom}"></option>
+                    <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                 </select>
             </div>
         </div>
@@ -63,21 +63,21 @@
         <div class="row">
             <div class="col-md-3 mb-3">
                 <div class="form-check mt-4">
-                    <input type="checkbox" th:field="*{estFait}" class="form-check-input" id="estFait">
+                    <input class="form-check-input" id="estFait" th:field="*{estFait}" type="checkbox">
                     <label class="form-check-label" for="estFait">Contrat réussi ?</label>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="score" class="form-label">Score</label>
-                <input type="number" th:field="*{score}" class="form-control" id="score">
+                <label class="form-label" for="score">Score</label>
+                <input class="form-control" id="score" th:field="*{score}" type="number">
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enregistrer la partie</button>
+        <button class="btn btn-primary" type="submit">Enregistrer la partie</button>
     </form>
 </div>
 <script>
-    document.getElementById('partieForm').addEventListener('submit', function(e) {
+    document.getElementById('partieForm').addEventListener('submit', function (e) {
         e.preventDefault(); // Empêche l'envoi classique
 
         const formData = new FormData(this);

@@ -8,10 +8,6 @@
             <a class="navbar-brand"
                href="/admin/reunion"
                sec:authorize="isAuthenticated()">📅 Réunion</a>
-            <a class="navbar-brand"
-               href="/admin/partie"
-               sec:authorize="isAuthenticated()"
-               th:if="${etape == null or etape != 1}">📝 Parties</a>
             <button aria-controls="offcanvasNavbar" aria-label="Toggle navigation" class="navbar-toggler"
                     data-bs-target="#offcanvasNavbar"
                     data-bs-toggle="offcanvas" type="button">

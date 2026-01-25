@@ -122,15 +122,15 @@ public class PartieService {
         }
 
         if (nombreJoueur == 4) {
-            if(partieForm.getAppelId()!=0){
+            if (partieForm.getAppelId() != 0) {
                 throw new TdaException("Il n'y a pas appel à 4 joueurs !!!");
             }
-            if(partieForm.getMortId()!=0){
+            if (partieForm.getMortId() != 0) {
                 throw new TdaException("Il n'y a pas mort à 4 joueurs !!!");
             }
         }
         if (nombreJoueur == 5) {
-            if(partieForm.getMortId()!=0){
+            if (partieForm.getMortId() != 0) {
                 throw new TdaException("Il n'y a pas mort à 5 joueurs !!!");
             }
         }

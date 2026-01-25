@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TDA</title>
+    <div th:replace="~{fragments/header :: header-css}"></div>
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+<div class="container-fluid">
+    <div id="top-offset"></div>
+    <div class="mt-3" th:if="${errorMessage}">
+        <div class="alert alert-danger" th:text="${errorMessage}"></div>
+    </div>
+    <div class="mt-3" th:if="${status == 1}">
+        <form th:action="@{/admin/reunion}" method="post">
+            <div class="mb-2">
+                <strong>Sélectionne les joueurs (4 à 6) :</strong>
+            </div>
+
+            <div th:if="${amis == null or #lists.isEmpty(amis)}" class="alert alert-warning">
+                Aucun ami disponible.
+            </div>
+
+            <div th:if="${amis != null and !#lists.isEmpty(amis)}">
+                <div class="form-check" th:each="a : ${amis}">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           name="amiIds"
+                           th:id="${'ami_' + a.id}"
+                           th:value="${a.id}"/>
+                    <label class="form-check-label"
+                           th:for="${'ami_' + a.id}"
+                           th:text="${a.nom}">
+                        Ami
+                    </label>
+                </div>
+
+                <div class="mt-3">
+                    <button class="btn btn-primary" type="submit">Créer la réunion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="mt-3" th:if="${status == 2}">
+        <div class="d-flex justify-content-start mb-3">
+            <a class="btn btn-success" th:href="@{/admin/partie}">Ajouter une partie</a>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <button type="button"
+                    class="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#cagnotteModal">
+                Cagnotte
+            </button>
+        </div>
+
+        <!-- Modal de confirmation -->
+        <div class="modal fade" id="cagnotteModal" tabindex="-1" aria-labelledby="cagnotteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cagnotteModalLabel">Cagnotte</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        Confirmer le passage à la cagnotte ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                        <form th:action="@{/admin/reunion/cagnotte}" method="post" class="m-0">
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="mt-3" th:if="${status == 3}">
+        <div class="mt-3" th:if="${status == 3}">
+            <!-- Bouton RAZ en bas -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="button"
+                        class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#razModal">
+                    RAZ réunion ?
+                </button>
+            </div>
+
+            <!-- Modal de confirmation RAZ -->
+            <div class="modal fade" id="razModal" tabindex="-1" aria-labelledby="razModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="razModalLabel">RAZ réunion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                        </div>
+                        <div class="modal-body">
+                            Confirmer la remise à zéro de la réunion ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                            <form th:action="@{/admin/reunion/raz}" method="post" class="m-0">
+                                <button type="submit" class="btn btn-primary">OK</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
