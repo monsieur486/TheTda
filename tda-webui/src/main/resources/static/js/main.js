@@ -78,8 +78,8 @@ function afficheScores(scores) {
         // On applique la couleur au score
         html += `
             <tr>
-                <td style="font-weight: bold;">${joueur.nom}</td>
-                <td class="text-end" style="color: ${joueur.color}; font-weight: bold;">${joueur.score}</td>
+                <td style="font-weight: bold; font-size: 1.8em;">${joueur.nom}</td>
+                <td class="text-end" style="color: ${joueur.color}; font-weight: bold; font-size: 2.5em;">${joueur.score}</td>
             </tr>
         `;
     });
