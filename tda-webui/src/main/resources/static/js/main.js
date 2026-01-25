@@ -40,10 +40,25 @@ function showData(data) {
     let labels = data.labels;
     let datasets = data.datasets;
     document.getElementById('resume').innerHTML = data.resume;
-    if(status > 1){
+    if (status > 1) {
         afficheScores(scores);
         afficheParties(data.parties);
         afficheGraph(labels, datasets);
+        return;
+    }
+
+    // Reset UI when reunion is not active (ex: RAZ)
+    const scoresDiv = document.getElementById('scores');
+    if (scoresDiv) {
+        scoresDiv.innerHTML = "<p>Aucun score disponible.</p>";
+    }
+    const manchesDiv = document.getElementById('manches');
+    if (manchesDiv) {
+        manchesDiv.innerHTML = "<p>Aucune partie à afficher.</p>";
+    }
+    if (chartInstance) {
+        chartInstance.destroy();
+        chartInstance = null;
     }
 }
 
@@ -79,6 +94,7 @@ function afficheScores(scores) {
 
 function afficheParties(parties) {
     const manchesDiv = document.getElementById('manches');
+    const isAuthenticated = Boolean(document.getElementById('auth-flag'));
 
     // Si l'onglet / fragment n'est pas présent dans le DOM, on évite l'erreur
     if (!manchesDiv) {
@@ -94,7 +110,19 @@ function afficheParties(parties) {
     // Une string par ligne => liste HTML
     manchesDiv.innerHTML = `
         <ul class="list-group mt-3">
-            ${parties.map(p => `<li class="list-group-item">${escapeHtml(p)}</li>`).join('')}
+            ${parties.map((p, index) => {
+                const content = escapeHtml(p);
+                if (!isAuthenticated) {
+                    return `<li class="list-group-item">${content}</li>`;
+                }
+                const editUrl = `/admin/partie/${index + 1}`;
+                return `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>${content}</span>
+                        <a class="btn btn-sm btn-outline-primary" href="${editUrl}">Modifier</a>
+                    </li>
+                `;
+            }).join('')}
         </ul>
     `;
 

@@ -1,18 +1,17 @@
 package com.mr486.tdawebui.controller;
 
-import com.mr486.tdawebui.dto.AmiListe;
-import com.mr486.tdawebui.socket.ServerStateWsController;
+import com.mr486.tdawebui.dto.ErrorMessage;
+import com.mr486.tdawebui.dto.PartieForm;
+import com.mr486.tdawebui.service.PartieService;
+import com.mr486.tdawebui.tools.ErrorResponseTools;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.Objects;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,22 +19,88 @@ import java.util.Objects;
 @Slf4j
 public class PartieController {
 
-    private final ServerStateWsController serverStateWsController;
+    private final PartieService partieService;
+    private final ErrorResponseTools errorResponseTools;
 
-    private final RestTemplate restTemplate;
-    @Value( "${app.tda-core.api-url}")
-    private String coreApiUrl;
+    @GetMapping("/partie")
+    public String getReunion(Model model) {
+        model.addAttribute("joueurs", partieService.getJoueursListe());
+        model.addAttribute("nbJoueurs", partieService.joueursInscrits());
+        model.addAttribute("contrats", partieService.getContratsListe());
+        model.addAttribute("partieForm", new PartieForm());
+        return "addPartie";
+    }
 
-    private ResponseEntity<AmiListe[]> getAmis() {
+    @GetMapping("/partie/{numPartie}")
+    public String getPartie(@PathVariable int numPartie, Model model, RedirectAttributes redirectAttributes) {
         try {
-            return restTemplate.exchange(coreApiUrl + "/api/private/amis", HttpMethod.GET, null, AmiListe[].class);
-        } catch (Exception e) {
-            log.error("Error fetching amis from core API", e);
-            return ResponseEntity.status(500).build();
+            ResponseEntity<PartieForm> response = partieService.getPartie(numPartie);
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                model.addAttribute("numPartie", numPartie);
+                model.addAttribute("joueurs", partieService.getJoueursListe());
+                model.addAttribute("nbJoueurs", partieService.joueursInscrits());
+                model.addAttribute("contrats", partieService.getContratsListe());
+                model.addAttribute("partieForm", response.getBody());
+                return "updatePartie";
+            }
+
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Chargement impossible (statut: " + response.getStatusCode() + ").");
+            return "redirect:/admin/reunion";
+
+        } catch (HttpStatusCodeException e) {
+            String json = e.getResponseBodyAsString();
+            ErrorMessage err = errorResponseTools.getErrorMessageFromJson(json, "tda-core");
+
+            redirectAttributes.addFlashAttribute("errorMessage", err.getMessage());
+            return "redirect:/admin/reunion";
         }
     }
 
-    public List<AmiListe> getAmisListe() {
-        return List.of(Objects.requireNonNull(getAmis().getBody()));
+    @PostMapping("/partie/")
+    public String ajoutPartie(@ModelAttribute PartieForm partieForm,
+                              RedirectAttributes redirectAttributes) {
+        try {
+            ResponseEntity<Void> response = partieService.ajoutPartie(partieForm);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return "redirect:/";
+            }
+
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Création impossible (statut: " + response.getStatusCode() + ").");
+            return "redirect:/admin/partie";
+
+        } catch (HttpStatusCodeException e) {
+            String json = e.getResponseBodyAsString(); // <-- contient: {"status":400,"message":"..."}
+            ErrorMessage err = errorResponseTools.getErrorMessageFromJson(json, "tda-core");
+
+            redirectAttributes.addFlashAttribute("errorMessage", err.getMessage());
+            return "redirect:/admin/partie";
+        }
+    }
+
+    @PostMapping("/partie/{numPartie}")
+    public String updatePartie(@PathVariable int numPartie,
+                               @ModelAttribute PartieForm partieForm,
+                               RedirectAttributes redirectAttributes) {
+        try {
+            ResponseEntity<Void> response = partieService.updatePartie(numPartie, partieForm);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return "redirect:/admin/reunion";
+            }
+
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Création impossible (statut: " + response.getStatusCode() + ").");
+
+            return "redirect:/admin/partie/" + numPartie;
+        } catch (HttpStatusCodeException e) {
+            String json = e.getResponseBodyAsString();
+            ErrorMessage err = errorResponseTools.getErrorMessageFromJson(json, "tda-core");
+            redirectAttributes.addFlashAttribute("errorMessage", err.getMessage());
+            return "redirect:/admin/partie/" + numPartie;
+        }
     }
 }

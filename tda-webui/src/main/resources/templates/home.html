@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="fr"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>TDA</title>
     <div th:replace="~{fragments/header :: header-css}"></div>
@@ -11,6 +12,7 @@
 <div class="container-fluid">
     <div id="top-offset"></div>
     <div id="error"></div>
+    <div id="auth-flag" sec:authorize="isAuthenticated()" data-auth="true" hidden></div>
 </div>
 <div class="custom-tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">

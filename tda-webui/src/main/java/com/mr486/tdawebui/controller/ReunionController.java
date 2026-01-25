@@ -30,11 +30,9 @@ public class ReunionController {
     @GetMapping("/reunion")
     public String getReunion(Model model) {
         int status = reunionService.reunionActiveStatus();
-        log.warn("Status : {}", status);
         model.addAttribute("status", status);
         List<AmiListe> amis = reunionService.getAmisListe();
         model.addAttribute("amis", amis);
-        log.warn("Amis : {}", amis);
         return "reunion";
     }
 

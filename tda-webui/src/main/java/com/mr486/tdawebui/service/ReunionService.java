@@ -60,7 +60,7 @@ public class ReunionService {
                 request,
                 Void.class
         );
-        serverStateWsController.sendState();
+        serverStateWsController.broadcastState();
         return response;
     }
 
@@ -71,7 +71,7 @@ public class ReunionService {
                 null,
                 Void.class
         );
-        serverStateWsController.sendState();
+        serverStateWsController.broadcastState();
         return response;
     }
 
@@ -82,7 +82,7 @@ public class ReunionService {
                 null,
                 Void.class
         );
-        serverStateWsController.sendState();
+        serverStateWsController.broadcastState();
         return response;
     }
 
