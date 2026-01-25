@@ -27,7 +27,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row align-items-center mb-3">
                     <label class="col-4 col-form-label" for="contratId">Contrat</label>
                     <div class="col-8">
@@ -37,7 +36,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row align-items-center mb-3">
                     <label class="col-4 col-form-label" for="preneurId">Preneur</label>
                     <div class="col-8">
@@ -47,7 +45,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row align-items-center mb-3" th:if="${nbJoueurs >= 5}">
                     <label class="col-4 col-form-label" for="appelId">Appel</label>
                     <div class="col-8">
@@ -57,24 +54,19 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-6 mb-3">
-                    <label class="form-label d-block" for="estFait">Contrat</label>
                     <div class="form-check form-switch">
                         <input class="form-check-input" id="estFait" th:field="*{estFait}" type="checkbox">
                         <label class="form-check-label" for="estFait">Fait</label>
                     </div>
                 </div>
-
                 <div class="col-6 mb-3">
-                    <label class="form-label" for="score">Score</label>
                     <select class="form-select" id="score" th:field="*{score}">
                         <option th:each="s : ${#numbers.sequence(0, 50, 10)}"
                                 th:text="${s}"
                                 th:value="${s}"></option>
                     </select>
                 </div>
-
                 <div class="row align-items-center mb-3">
                     <label class="col-4 col-form-label" for="petitAuBoutId">Petit au bout</label>
                     <div class="col-8">
@@ -84,14 +76,12 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="col-12 mb-3">
                     <div class="form-check">
                         <input class="form-check-input" id="chelem" th:field="*{chelem}" type="checkbox">
                         <label class="form-check-label" for="chelem">Chelem</label>
                     </div>
                 </div>
-
                 <div class="col-12 mb-3">
                     <div class="form-check">
                         <input class="form-check-input" id="capot" th:field="*{capot}" type="checkbox">
@@ -99,7 +89,6 @@
                     </div>
                 </div>
             </div>
-
             <button class="btn btn-primary" type="submit">Mettre a jour la partie</button>
         </form>
     </div>
