@@ -1,5 +1,6 @@
 let stompClient = null;
 const ctx = document.getElementById('myChart');
+let chartInstance = null;
 
 function connect() {
     const socket = new SockJS('/ws');
@@ -110,7 +111,14 @@ function escapeHtml(str) {
 }
 
 function afficheGraph(labels, datasets) {
-    new Chart(ctx, {
+    if (chartInstance) {
+        chartInstance.data.labels = labels;
+        chartInstance.data.datasets = datasets;
+        chartInstance.update();
+        return;
+    }
+
+    chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
