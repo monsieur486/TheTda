@@ -56,17 +56,18 @@ public class LogTdaService {
         StringBuilder logTdaToString = new StringBuilder();
         int actionCode = logTda.getActionCode();
         Timestamp timeLog = logTda.getDateCreation();
-        String hhmm = timeLog.toLocalDateTime()
+        String hhmm = timeLog.toInstant()
+                .atZone(java.time.ZoneId.of("Europe/Paris"))
                 .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
         logTdaToString.append(hhmm).append(" ");
 
         if(actionCode==1){
-            logTdaToString.append("✅");
+            logTdaToString.append("✅ Ajout");
         }
         if(actionCode==2){
-            logTdaToString.append("✏");
+            logTdaToString.append("✏ Modification");
         }
-        logTdaToString.append(":").append(logTda.getNumeroPartie());
+        logTdaToString.append(" partie n°").append(logTda.getNumeroPartie());
         return logTdaToString.toString();
     }
 
