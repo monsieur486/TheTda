@@ -23,7 +23,7 @@ public class EtatReunionService {
         }
         etatReunion.setStatus(statusReunionActive);
         if (statusReunionActive == 1) {
-            etatReunion.setResume("En attente de joueurs...");
+            etatReunion.setResume("Inscription en cours...");
         } else {
             etatReunion.setResume(resumeService.createResume());
         }

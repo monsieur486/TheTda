@@ -50,11 +50,11 @@ function showData(data) {
     // Reset UI when reunion is not active (ex: RAZ)
     const scoresDiv = document.getElementById('scores');
     if (scoresDiv) {
-        scoresDiv.innerHTML = "<p>Aucun score disponible.</p>";
+        scoresDiv.innerHTML = "<p style='padding: 10px'>Aucun score disponible.</p>";
     }
     const manchesDiv = document.getElementById('manches');
     if (manchesDiv) {
-        manchesDiv.innerHTML = "<p>Aucune partie à afficher.</p>";
+        manchesDiv.innerHTML = "<p style='padding: 10px'>Aucune partie à afficher.</p>";
     }
     if (chartInstance) {
         chartInstance.destroy();
@@ -65,7 +65,7 @@ function showData(data) {
 function afficheScores(scores) {
     const scoresDiv = document.getElementById('scores');
     if (!scores || scores.length === 0) {
-        scoresDiv.innerHTML = "<p>Aucun score disponible.</p>";
+        scoresDiv.innerHTML = "<p style='padding: 10px'>Aucun score disponible.</p>";
         return;
     }
 
@@ -103,7 +103,7 @@ function afficheParties(parties) {
     }
 
     if (!Array.isArray(parties) || parties.length === 0) {
-        manchesDiv.innerHTML = "<p>Aucune partie à afficher.</p>";
+        manchesDiv.innerHTML = "<p style='padding: 10px'>Aucune partie à afficher.</p>";
         return;
     }
 
