@@ -10,4 +10,5 @@
     <include file="db/changelog/005-create_parties.sql"/>
     <include file="db/changelog/006-create_trombines.sql"/>
     <include file="db/changelog/007-fixtures_trombines.sql"/>
+    <include file="db/changelog/008-create_logs.sql"/>
 </databaseChangeLog>

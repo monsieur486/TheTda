@@ -16,6 +16,7 @@ public class PartieService {
 
     private final PartieRepository partieRepository;
     private final JoueurService joueurService;
+    private final LogTdaService logTdaService;
 
     public Partie getPartie(int numPartie) {
         return partieRepository.findPartieByNumeroPartie(numPartie).orElseThrow(() -> new TdaException("La partie n'existe pas !!!"));
@@ -42,6 +43,7 @@ public class PartieService {
                 .build();
         verification(partieForm);
         partieRepository.save(partie);
+        logTdaService.addLog(1, partieForm, nombrePartie + 1);
     }
 
     public void updatePartie(int numPartie, PartieForm partieForm) {
@@ -57,6 +59,7 @@ public class PartieService {
         partie.setCapot(partieForm.getCapot());
         verification(partieForm);
         partieRepository.save(partie);
+        logTdaService.addLog(2, partieForm, numPartie);
     }
 
     public List<Partie> getAllParties() {

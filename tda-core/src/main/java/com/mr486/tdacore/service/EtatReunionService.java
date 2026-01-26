@@ -14,6 +14,7 @@ public class EtatReunionService {
     private final DetailPartieService detailPartieService;
     private final ScoreService scoreService;
     private final InfoGraphiqueService infoGraphiqueService;
+    private final LogTdaService logTdaService;
 
     public EtatReunion getEtatServeur() {
         EtatReunion etatReunion = new EtatReunion();
@@ -31,6 +32,7 @@ public class EtatReunionService {
         etatReunion.setParties(detailPartieService.getDetails());
         etatReunion.setLabels(infoGraphiqueService.getLabels());
         etatReunion.setDatasets(infoGraphiqueService.getDatasets());
+        etatReunion.setLogs(logTdaService.getLogs());
         return etatReunion;
     }
 }

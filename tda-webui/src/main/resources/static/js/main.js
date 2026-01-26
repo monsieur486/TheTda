@@ -39,11 +39,14 @@ function showData(data) {
     let scores = data.scores;
     let labels = data.labels;
     let datasets = data.datasets;
+    let logs = data.logs;
     document.getElementById('resume').innerHTML = data.resume;
     if (status > 1) {
         afficheScores(scores);
         afficheParties(data.parties);
         afficheGraph(labels, datasets);
+        afficheLogs(logs);
+        console.log(logs);
         return;
     }
 
@@ -169,6 +172,20 @@ function afficheGraph(labels, datasets) {
             }
         }
     });
+}
+
+function afficheLogs(logs) {
+    const logsDiv = document.getElementById('logs');
+    if (!logs || logs.length === 0) {
+        logsDiv.innerHTML = "<p style='padding: 10px'>Aucun log disponible.</p>";
+        return;
+    }
+
+    logsDiv.innerHTML = `
+        <ul class="list-group mt-3">
+            ${logs.map((log) => `<li class="list-group-item">${escapeHtml(log)}</li>`).join('')}
+        </ul>
+    `;
 }
 
 connect();

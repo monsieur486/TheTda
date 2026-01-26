@@ -18,6 +18,7 @@ public class EtatReunion {
     private List<String> parties;
     private List<Integer> labels;
     private List<Dataset> datasets;
+    private List<String> logs;
 
     public EtatReunion() {
         this.status = 0;
@@ -26,5 +27,6 @@ public class EtatReunion {
         this.parties = new java.util.ArrayList<>();
         this.labels = new java.util.ArrayList<>();
         this.datasets = new java.util.ArrayList<>();
+        this.logs = new java.util.ArrayList<>();
     }
 }

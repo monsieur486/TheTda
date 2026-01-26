@@ -19,6 +19,7 @@ public class GameManagement {
     private final AmiService amiService;
     private final JoueurService joueurService;
     private final PartieService partieService;
+    private final LogTdaService logTdaService;
 
     public void creation(List<Integer> amiIds) {
 
@@ -67,6 +68,7 @@ public class GameManagement {
         }
         joueurService.supprimeJoueurs();
         partieService.deleteParties();
+        logTdaService.deleteAllLogs();
         reunionService.setReunionActiveStatus(1);
     }
 

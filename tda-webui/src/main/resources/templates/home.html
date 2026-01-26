@@ -25,7 +25,7 @@
                         data-bs-toggle="tab"
                         id="scores-tab"
                         role="tab"
-                        type="button">📋 Scores
+                        type="button">📋 Points
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -52,6 +52,18 @@
                         type="button">🎲 Parties
                 </button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button
+                        aria-controls="logs"
+                        aria-selected="false"
+                        class="nav-link"
+                        data-bs-target="#logs"
+                        data-bs-toggle="tab"
+                        id="logs-tab"
+                        role="tab"
+                        type="button">🗄️ Logs
+                </button>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div aria-labelledby="scores-tab" class="tab-pane fade show active" id="score" role="tabpanel">
@@ -62,6 +74,9 @@
             </div>
             <div aria-labelledby="manches-tab" class="tab-pane fade" id="manches" role="tabpanel">
                 <div th:replace="~{fragments/manches :: manches}"></div>
+            </div>
+            <div aria-labelledby="logs-tab" class="tab-pane fade" id="logs" role="tabpanel">
+                <div th:replace="~{fragments/logs :: logs}"></div>
             </div>
         </div>
 </div>
