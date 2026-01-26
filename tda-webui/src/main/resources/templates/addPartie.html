@@ -10,7 +10,6 @@
 <div th:replace="~{fragments/menu :: menu}"></div>
 <div class="container-fluid">
     <div id="top-offset"></div>
-    <div id="error"></div>
     <div class="mt-3" th:if="${errorMessage}">
         <div class="alert alert-danger" th:text="${errorMessage}"></div>
     </div>
@@ -22,7 +21,7 @@
                     <label class="col-4 col-form-label" for="mortId">Mort</label>
                     <div class="col-8">
                         <select class="form-select" id="mortId" th:field="*{mortId}">
-                            <option value="0">0 - A definir</option>
+                            <option value="0">--</option>
                             <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                         </select>
                     </div>
@@ -31,7 +30,7 @@
                     <label class="col-4 col-form-label" for="contratId">Contrat</label>
                     <div class="col-8">
                         <select class="form-select" id="contratId" th:field="*{contratId}">
-                            <option value="0">0 - A definir</option>
+                            <option value="0">--</option>
                             <option th:each="c : ${contrats}" th:text="${c.nom}" th:value="${c.id}"></option>
                         </select>
                     </div>
@@ -40,7 +39,7 @@
                     <label class="col-4 col-form-label" for="preneurId">Preneur</label>
                     <div class="col-8">
                         <select class="form-select" id="preneurId" th:field="*{preneurId}">
-                            <option value="0">0 - A definir</option>
+                            <option value="0">--</option>
                             <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                         </select>
                     </div>
@@ -49,7 +48,7 @@
                     <label class="col-4 col-form-label" for="appelId">Appel</label>
                     <div class="col-8">
                         <select class="form-select" id="appelId" th:field="*{appelId}">
-                            <option value="0">0 - A definir</option>
+                            <option value="0">--</option>
                             <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                         </select>
                     </div>
@@ -71,18 +70,18 @@
                     <label class="col-4 col-form-label" for="petitAuBoutId">Petit au bout</label>
                     <div class="col-8">
                         <select class="form-select" id="petitAuBoutId" th:field="*{petitAuBoutId}">
-                            <option value="0">0 - A definir</option>
+                            <option value="0">--</option>
                             <option th:each="j : ${joueurs}" th:text="${j.nom}" th:value="${j.id}"></option>
                         </select>
                     </div>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-6 mb-3">
                     <div class="form-check">
                         <input class="form-check-input" id="chelem" th:field="*{chelem}" type="checkbox">
                         <label class="form-check-label" for="chelem">Chelem</label>
                     </div>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-6 mb-3">
                     <div class="form-check">
                         <input class="form-check-input" id="capot" th:field="*{capot}" type="checkbox">
                         <label class="form-check-label" for="capot">Capot</label>

@@ -111,11 +111,11 @@ public class PartieService {
 
         if (partieForm.getContratId() > 1) {
             if (partieForm.getPreneurId() == 0) {
-                throw new TdaException("Il n'y a pas preneur indiqué !!!");
+                throw new TdaException("Il n'y a pas fr preneur indiqué !!!");
             }
             if (nombreJoueur > 4) {
                 if (partieForm.getAppelId() == 0) {
-                    throw new TdaException("Il n'y a pas appel indiqué !!!");
+                    throw new TdaException("Il n'y a pas d'appel indiqué !!!");
                 }
             }
 
@@ -123,21 +123,21 @@ public class PartieService {
 
         if (nombreJoueur == 4) {
             if (partieForm.getAppelId() != 0) {
-                throw new TdaException("Il n'y a pas appel à 4 joueurs !!!");
+                throw new TdaException("Il n'y a pas d'appel à 4 joueurs !!!");
             }
             if (partieForm.getMortId() != 0) {
-                throw new TdaException("Il n'y a pas mort à 4 joueurs !!!");
+                throw new TdaException("Il n'y a pas de mort à 4 joueurs !!!");
             }
         }
         if (nombreJoueur == 5) {
             if (partieForm.getMortId() != 0) {
-                throw new TdaException("Il n'y a pas mort à 5 joueurs !!!");
+                throw new TdaException("Il n'y a pas de mort à 5 joueurs !!!");
             }
         }
 
         if (nombreJoueur == 6) {
             if (partieForm.getMortId() == 0) {
-                throw new TdaException("Il n'y a pas mort indiqué !!!");
+                throw new TdaException("Il n'y a pas mde ort indiqué !!!");
             }
             if (Objects.equals(partieForm.getPreneurId(), partieForm.getMortId())) {
                 throw new TdaException("Le preneur et le mort sont identiques !!!");

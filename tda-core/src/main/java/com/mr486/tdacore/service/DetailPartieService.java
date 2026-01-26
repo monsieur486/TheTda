@@ -20,13 +20,8 @@ public class DetailPartieService {
         int nbJoueurs = joueurService.getNbJoueur();
 
         StringBuilder sb = new StringBuilder();
-        sb.append(partie.getNumeroPartie()).append(" ");
-        if (partie.getNumeroPartie() <= 9) {
-            sb.append(" ");
-        }
-        if (nbJoueurs == 6) {
-            sb.append("\uD83E\uDEA6").append(amiService.getAmiById(partie.getMortId()).getNom()).append(" ");
-        }
+        sb.append("(");
+        sb.append(partie.getNumeroPartie()).append(") ");
         sb.append(contratService.getContratById(partie.getContratId()).getInitiale());
         if (partie.getContratId() > 1) {
             sb.append(" ");
@@ -47,7 +42,7 @@ public class DetailPartieService {
             }
             sb.append(partie.getScore());
             if (partie.getPetitAuBoutId() > 0) {
-                sb.append(" 1️⃣: ");
+                sb.append(" 1️⃣ ");
                 sb.append(amiService.getAmiById(partie.getPetitAuBoutId()).getNom());
             }
             if (partie.getChelem()) {
@@ -57,6 +52,9 @@ public class DetailPartieService {
                 sb.append(" \uD83D\uDE2DCapot");
             }
 
+        }
+        if (nbJoueurs == 6) {
+            sb.append(" \uD83E\uDEA6").append(amiService.getAmiById(partie.getMortId()).getNom());
         }
 
         return sb.toString();

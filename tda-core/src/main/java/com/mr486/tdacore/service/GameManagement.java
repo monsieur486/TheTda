@@ -37,12 +37,12 @@ public class GameManagement {
 
         //vérification du nombre minimum de joueurs
         if (amiIdsSet.size() < 4) {
-            throw new TdaException("Il faut au moins 4 joueurs pour commencer une partie !!!");
+            throw new TdaException("Il faut au moins 4 joueurs pour commencer une réunion !!!");
         }
 
         //vérification du nombre maximum de joueurs
         if (amiIdsSet.size() > 6) {
-            throw new TdaException("Il faut au maximum 6 joueurs pour commencer une partie !!!");
+            throw new TdaException("Il faut au maximum 6 joueurs pour commencer une réunion !!!");
         }
 
         //vérification de l'existence des amis
