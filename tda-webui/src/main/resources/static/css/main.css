@@ -1,3 +1,7 @@
+:root {
+    --status-height: 40px;
+}
+
 #status {
     position: fixed;
     left: 0;
@@ -7,10 +11,15 @@
     z-index: 9999;
 
     padding: 8px 12px;
+    min-height: var(--status-height);
     background: rgba(0, 0, 0, 0.75);
     color: #fff;
 
     text-align: left;
+}
+
+body {
+    padding-bottom: calc(var(--status-height) + 8px);
 }
 
 #top-offset {
