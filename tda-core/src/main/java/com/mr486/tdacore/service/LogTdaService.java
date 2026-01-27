@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,9 @@ import java.util.List;
 public class LogTdaService {
 
     private final LogTdaRepository logTdaRepository;
+    private final ContratService contratService;
+    private final AmiService amiService;
+    private final JoueurService joueurService;
 
     private List<LogTda> findAllLogsOrderByDateDesc() {
         return logTdaRepository.findAllByOrderByDateCreationDesc();
@@ -62,12 +66,13 @@ public class LogTdaService {
         logTdaToString.append(hhmm).append(" ");
 
         if(actionCode==1){
-            logTdaToString.append("✅ Ajout");
+            logTdaToString.append("\uD83C\uDD95");
         }
         if(actionCode==2){
-            logTdaToString.append("✏ Modification");
+            logTdaToString.append("✏️");
         }
-        logTdaToString.append(" partie n°").append(logTda.getNumeroPartie());
+        logTdaToString.append(logTda.getNumeroPartie());
+        logTdaToString.append(" ").append(getDetailByLog(logTda));
         return logTdaToString.toString();
     }
 
@@ -75,5 +80,47 @@ public class LogTdaService {
         List<String> logs = new java.util.ArrayList<>();
         findAllLogsOrderByDateDesc().forEach(log -> logs.add(convertLogToString(log)));
         return logs;
+    }
+
+    private String getDetailByLog(LogTda partie){
+        int nbJoueurs = joueurService.getNbJoueur();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(contratService.getContratById(partie.getContratId()).getInitiale());
+        if (partie.getContratId() > 1) {
+            sb.append(" ");
+            if (nbJoueurs == 4) {
+                sb.append(amiService.getAmiById(partie.getPreneurId()).getNom());
+            } else {
+                if (Objects.equals(partie.getPreneurId(), partie.getAppelId())) {
+                    sb.append(amiService.getAmiById(partie.getPreneurId()).getNom()).append("⚽");
+                } else {
+                    sb.append(amiService.getAmiById(partie.getPreneurId()).getNom()).append("\uD83E\uDD1D");
+                    sb.append(amiService.getAmiById(partie.getAppelId()).getNom());
+                }
+            }
+            if (partie.getEstFait()) {
+                sb.append(" \uD83D\uDFE2");
+            } else {
+                sb.append(" \uD83D\uDD34");
+            }
+            sb.append(partie.getScore());
+            if (partie.getPetitAuBoutId() > 0) {
+                sb.append(" 1️⃣ ");
+                sb.append(amiService.getAmiById(partie.getPetitAuBoutId()).getNom());
+            }
+            if (partie.getChelem()) {
+                sb.append(" \uD83D\uDC51Chelem");
+            }
+            if (partie.getCapot()) {
+                sb.append(" \uD83D\uDE2DCapot");
+            }
+
+        }
+        if (nbJoueurs == 6) {
+            sb.append(" \uD83E\uDEA6").append(amiService.getAmiById(partie.getMortId()).getNom());
+        }
+
+        return sb.toString();
     }
 }
