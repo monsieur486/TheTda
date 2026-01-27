@@ -59,6 +59,10 @@ function showData(data) {
     if (manchesDiv) {
         manchesDiv.innerHTML = "<p style='padding: 10px'>Aucune partie à afficher.</p>";
     }
+    const logsDiv = document.getElementById('logs');
+    if (logsDiv) {
+        logsDiv.innerHTML = "<p style='padding: 10px'>Aucun log disponible.</p>";
+    }
     if (chartInstance) {
         chartInstance.destroy();
         chartInstance = null;
@@ -176,6 +180,11 @@ function afficheGraph(labels, datasets) {
 
 function afficheLogs(logs) {
     const logsDiv = document.getElementById('logs');
+    if (!logsDiv) {
+        console.warn("L'élément #logDiv n'a pas été trouvé dans la page.");
+        return;
+    }
+
     if (!logs || logs.length === 0) {
         logsDiv.innerHTML = "<p style='padding: 10px'>Aucun log disponible.</p>";
         return;
