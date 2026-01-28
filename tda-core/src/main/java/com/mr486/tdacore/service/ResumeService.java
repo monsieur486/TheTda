@@ -18,7 +18,7 @@ public class ResumeService {
         if (partieService.getNbPartie() == 0) {
             return "En attente de la 1ère partie...";
         }
-        return partieService.getNbPartie() + "\uD83C\uDFB2"
+        return partieService.getNbPartie() + "\uD83C\uDCCF"
                 + ": "
                 + getDetail();
     }
