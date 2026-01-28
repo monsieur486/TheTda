@@ -15,4 +15,5 @@ public class PointJoueur {
     private String nom;
     private String color;
     private Integer score;
+    private String avatar;
 }

@@ -5,7 +5,9 @@ import com.mr486.tdacore.dto.JoueurListe;
 import com.mr486.tdacore.dto.PointJoueur;
 import com.mr486.tdacore.persistance.Partie;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,6 +56,7 @@ public class ScoreService {
             }
         }
         pointColor.setNom(nom);
+        pointColor.setAvatar(avatarUrl(joueur.getId()));
         pointColor.setScore(score);
         if (score > 0) {
             pointColor.setColor(ApplicationConfiguration.COLOR_POSITIVE);
@@ -67,6 +70,10 @@ public class ScoreService {
 
     private Boolean estGuest(Integer id) {
         return amiService.getAmiById(id).getIsGuest();
+    }
+
+    private String avatarUrl(Integer id){
+        return "/img/" + amiService.getAvatarUrl(id);
     }
 
     private String cagnotte(int score) {

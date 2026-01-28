@@ -55,4 +55,8 @@ public class AmiService {
         }
         return ami;
     }
+
+    public String getAvatarUrl(Integer id){
+        return trombineService.getImageUrl(amiRepository.findById(id).orElseThrow().getImageId());
+    }
 }
