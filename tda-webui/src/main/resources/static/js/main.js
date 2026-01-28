@@ -89,7 +89,7 @@ function afficheScores(scores) {
                     <img src="${joueur.avatar}" alt="" width="50" height="50" style="margin-right: 8px; vertical-align: middle;">
                     ${joueur.nom}
                 </td>
-                <td class="text-end" style="color: ${joueur.color}; font-weight: bold; font-size: 2.5em;">${joueur.score}</td>
+                <td class="text-end" style="color: ${joueur.color}; font-weight: bold; font-size: 2.3em;">${joueur.score}</td>
             </tr>
         `;
     });
