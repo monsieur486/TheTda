@@ -85,7 +85,7 @@ function afficheScores(scores) {
         // On applique la couleur au score
         html += `
             <tr>
-                <td style="font-weight: bold; font-size: 1.5em;">
+                <td style="font-weight: bold; font-size: 1.7em;">
                     <img src="${joueur.avatar}" alt="" width="50" height="50" style="margin-right: 8px; vertical-align: middle;">
                     ${joueur.nom}
                 </td>
