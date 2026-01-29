@@ -20,17 +20,26 @@
 
 body {
     padding-bottom: calc(var(--status-height) + 8px);
-    position: relative;
 }
 
-body::before {
+.tab-pane#manches {
+    position: relative;
+    min-height: 240px;
+}
+
+.tab-pane#manches::before {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: url("/img/fond.png") center / contain no-repeat;
-    opacity: 0.1;
+    opacity: 0.2;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
+}
+
+.tab-pane#manches > div {
+    position: relative;
+    z-index: 1;
 }
 
 #top-offset {
@@ -39,4 +48,8 @@ body::before {
 
 #resume {
     padding: 10px;
+}
+
+#manches .list-group-item {
+    background-color: transparent;
 }
