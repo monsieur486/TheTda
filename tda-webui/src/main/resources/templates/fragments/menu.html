@@ -4,7 +4,10 @@
 <div th:fragment="menu">
     <nav class="navbar bg-primary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">TDA</a>
+            <a class="navbar-brand" href="#">
+                <img src="/img/atout21.png" style="display: inline-block; width: 20px; height: 40px;">
+                <span style="display: inline-block;">TDA</span>
+            </a>
             <a class="navbar-brand"
                href="/admin/reunion"
                sec:authorize="isAuthenticated()">📅 Réunion</a>
