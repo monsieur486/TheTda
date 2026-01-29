@@ -31,7 +31,7 @@ public class GameManagement {
         Integer statusReunion = reunionService.reunionActiveStatus();
 
         if (statusReunion > 1) {
-            throw new TdaException("La reunion est cours !!!");
+            throw new TdaException("La reunion est en cours !!!");
         }
 
         Set<Integer> amiIdsSet = new HashSet<>(amiIds);

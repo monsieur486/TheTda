@@ -24,7 +24,7 @@ public class EtatReunionService {
         }
         etatReunion.setStatus(statusReunionActive);
         if (statusReunionActive == 1) {
-            etatReunion.setResume("Inscription en cours...");
+            etatReunion.setResume("Inscription active...");
         } else {
             etatReunion.setResume(resumeService.createResume());
         }
