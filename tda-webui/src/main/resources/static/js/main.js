@@ -1,6 +1,16 @@
 let stompClient = null;
 const ctx = document.getElementById('myChart');
 let chartInstance = null;
+const preloadedAvatars = new Set();
+
+function preloadAvatar(url) {
+    if (!url || preloadedAvatars.has(url)) {
+        return;
+    }
+    const img = new Image();
+    img.src = url;
+    preloadedAvatars.add(url);
+}
 
 function connect() {
     const socket = new SockJS('/ws');
@@ -75,6 +85,8 @@ function afficheScores(scores) {
         scoresDiv.innerHTML = "<p style='padding: 10px'>Aucun score disponible.</p>";
         return;
     }
+
+    scores.forEach(joueur => preloadAvatar(joueur.avatarUrl));
 
     let table = scoresDiv.querySelector('table');
     if (!table) {
