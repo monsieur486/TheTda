@@ -76,29 +76,56 @@ function afficheScores(scores) {
         return;
     }
 
-    let html = `
-        <table class="table table-striped mt-3">
-            <tbody>
-    `;
+    let table = scoresDiv.querySelector('table');
+    if (!table) {
+        table = document.createElement('table');
+        table.className = 'table table-striped mt-3';
+        table.appendChild(document.createElement('tbody'));
+        scoresDiv.innerHTML = '';
+        scoresDiv.appendChild(table);
+    }
 
-    scores.forEach(joueur => {
-        // On applique la couleur au score
-        html += `
-            <tr>
-                <td style="font-weight: bold; font-size: 1.8em;">
-                    ${joueur.nom}
-                </td>
-                <td class="text-end" style="color: ${joueur.color}; font-weight: bold; font-size: 2.5em;">${joueur.score}</td>
-            </tr>
-        `;
+    const tbody = table.querySelector('tbody');
+    const existingRows = new Map();
+    tbody.querySelectorAll('tr[data-nom]').forEach(row => {
+        existingRows.set(row.dataset.nom, row);
     });
 
-    html += `
-            </tbody>
-        </table>
-    `;
+    const fragment = document.createDocumentFragment();
+    scores.forEach(joueur => {
+        let row = existingRows.get(joueur.nom);
+        if (!row) {
+            row = document.createElement('tr');
+            row.dataset.nom = joueur.nom;
+            row.innerHTML = `
+                <td style="font-weight: bold; font-size: 1.7em;">
+                    <img alt="" width="40" height="40" style="margin-right: 8px; vertical-align: middle;">
+                    <span class="score-name"></span>
+                </td>
+                <td class="text-end score-value" style="font-weight: bold; font-size: 2.3em;"></td>
+            `;
+        }
 
-    scoresDiv.innerHTML = html;
+        const img = row.querySelector('img');
+        if (img && img.getAttribute('src') !== joueur.avatar) {
+            img.setAttribute('src', joueur.avatar);
+        }
+        const nameSpan = row.querySelector('.score-name');
+        if (nameSpan) {
+            nameSpan.textContent = joueur.nom;
+        }
+        const scoreCell = row.querySelector('.score-value');
+        if (scoreCell) {
+            scoreCell.textContent = joueur.score;
+            scoreCell.style.color = joueur.color;
+        }
+
+        fragment.appendChild(row);
+        existingRows.delete(joueur.nom);
+    });
+
+    existingRows.forEach(row => row.remove());
+    tbody.appendChild(fragment);
 }
 
 function afficheParties(parties) {
