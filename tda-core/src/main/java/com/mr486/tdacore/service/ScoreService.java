@@ -5,9 +5,7 @@ import com.mr486.tdacore.dto.JoueurListe;
 import com.mr486.tdacore.dto.PointJoueur;
 import com.mr486.tdacore.persistance.Partie;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -72,7 +70,7 @@ public class ScoreService {
         return amiService.getAmiById(id).getIsGuest();
     }
 
-    private String avatarUrl(Integer id){
+    private String avatarUrl(Integer id) {
         return "/img/" + amiService.getAvatarUrl(id);
     }
 

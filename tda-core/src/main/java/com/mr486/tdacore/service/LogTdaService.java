@@ -65,10 +65,10 @@ public class LogTdaService {
                 .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
         logTdaToString.append(hhmm).append(" ");
 
-        if(actionCode==1){
+        if (actionCode == 1) {
             logTdaToString.append("\uD83C\uDD95");
         }
-        if(actionCode==2){
+        if (actionCode == 2) {
             logTdaToString.append("✏️");
         }
         logTdaToString.append(logTda.getNumeroPartie());
@@ -82,7 +82,7 @@ public class LogTdaService {
         return logs;
     }
 
-    private String getDetailByLog(LogTda partie){
+    private String getDetailByLog(LogTda partie) {
         int nbJoueurs = joueurService.getNbJoueur();
 
         StringBuilder sb = new StringBuilder();

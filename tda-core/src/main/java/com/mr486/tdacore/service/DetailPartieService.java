@@ -1,6 +1,5 @@
 package com.mr486.tdacore.service;
 
-import com.mr486.tdacore.dto.PartieForm;
 import com.mr486.tdacore.persistance.LogTda;
 import com.mr486.tdacore.persistance.Partie;
 import lombok.RequiredArgsConstructor;

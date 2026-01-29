@@ -60,7 +60,7 @@ public class PartieController {
 
     @PostMapping("/partie/")
     public String ajoutPartie(@ModelAttribute PartieForm partieForm,
-                              RedirectAttributes redirectAttributes) {
+                              Model model) {
         try {
             ResponseEntity<Void> response = partieService.ajoutPartie(partieForm);
 
@@ -68,23 +68,25 @@ public class PartieController {
                 return "redirect:/";
             }
 
-            redirectAttributes.addFlashAttribute("errorMessage",
+            model.addAttribute("errorMessage",
                     "Création impossible (statut: " + response.getStatusCode() + ").");
-            return "redirect:/admin/partie";
+            populateFormModel(model, partieForm);
+            return "addPartie";
 
         } catch (HttpStatusCodeException e) {
             String json = e.getResponseBodyAsString(); // <-- contient: {"status":400,"message":"..."}
             ErrorMessage err = errorResponseTools.getErrorMessageFromJson(json, "tda-core");
 
-            redirectAttributes.addFlashAttribute("errorMessage", err.getMessage());
-            return "redirect:/admin/partie";
+            model.addAttribute("errorMessage", err.getMessage());
+            populateFormModel(model, partieForm);
+            return "addPartie";
         }
     }
 
     @PostMapping("/partie/{numPartie}")
     public String updatePartie(@PathVariable int numPartie,
                                @ModelAttribute PartieForm partieForm,
-                               RedirectAttributes redirectAttributes) {
+                               Model model) {
         try {
             ResponseEntity<Void> response = partieService.updatePartie(numPartie, partieForm);
 
@@ -92,15 +94,25 @@ public class PartieController {
                 return "redirect:/admin/reunion";
             }
 
-            redirectAttributes.addFlashAttribute("errorMessage",
+            model.addAttribute("errorMessage",
                     "Création impossible (statut: " + response.getStatusCode() + ").");
-
-            return "redirect:/admin/partie/" + numPartie;
+            populateFormModel(model, partieForm);
+            model.addAttribute("numPartie", numPartie);
+            return "updatePartie";
         } catch (HttpStatusCodeException e) {
             String json = e.getResponseBodyAsString();
             ErrorMessage err = errorResponseTools.getErrorMessageFromJson(json, "tda-core");
-            redirectAttributes.addFlashAttribute("errorMessage", err.getMessage());
-            return "redirect:/admin/partie/" + numPartie;
+            model.addAttribute("errorMessage", err.getMessage());
+            populateFormModel(model, partieForm);
+            model.addAttribute("numPartie", numPartie);
+            return "updatePartie";
         }
+    }
+
+    private void populateFormModel(Model model, PartieForm partieForm) {
+        model.addAttribute("joueurs", partieService.getJoueursListe());
+        model.addAttribute("nbJoueurs", partieService.joueursInscrits());
+        model.addAttribute("contrats", partieService.getContratsListe());
+        model.addAttribute("partieForm", partieForm);
     }
 }
