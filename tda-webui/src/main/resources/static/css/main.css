@@ -20,6 +20,17 @@
 
 body {
     padding-bottom: calc(var(--status-height) + 8px);
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("/img/fond.png") center / contain no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
 }
 
 #top-offset {
