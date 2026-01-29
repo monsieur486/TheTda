@@ -16,7 +16,6 @@
             <div aria-labelledby="offcanvasNavbarLabel" class="offcanvas offcanvas-end" id="offcanvasNavbar"
                  tabindex="-1">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Connexion</h5>
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -32,7 +31,7 @@
                         <div th:if="${param.error}">Identifiants invalides.</div>
                     </form>
                     <form method="post" sec:authorize="isAuthenticated()" th:action="@{/logout}">
-                        <button type="submit">Déconnexion</button>
+                        <button class="btn btn-warning" type="submit">Déconnexion</button>
                     </form>
                 </div>
             </div>
