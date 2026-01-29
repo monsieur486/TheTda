@@ -22,37 +22,10 @@ body {
     padding-bottom: calc(var(--status-height) + 8px);
 }
 
-.tab-pane#manches {
-    position: relative;
-    min-height: 240px;
-}
-
-.tab-pane#manches::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("/img/fond.png");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: contain;
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.tab-pane#manches > div {
-    position: relative;
-    z-index: 1;
-}
-
 #top-offset {
     margin-top: 80px;
 }
 
 #resume {
     padding: 10px;
-}
-
-#manches .list-group-item {
-    background-color: transparent;
 }
