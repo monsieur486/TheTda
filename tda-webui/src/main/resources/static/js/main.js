@@ -1,16 +1,6 @@
 let stompClient = null;
 const ctx = document.getElementById('myChart');
 let chartInstance = null;
-const preloadedAvatars = new Set();
-
-function preloadAvatar(url) {
-    if (!url || preloadedAvatars.has(url)) {
-        return;
-    }
-    const img = new Image();
-    img.src = url;
-    preloadedAvatars.add(url);
-}
 
 function connect() {
     const socket = new SockJS('/ws');
@@ -86,8 +76,6 @@ function afficheScores(scores) {
         return;
     }
 
-    scores.forEach(joueur => preloadAvatar(joueur.avatarUrl));
-
     let table = scoresDiv.querySelector('table');
     if (!table) {
         table = document.createElement('table');
@@ -111,17 +99,12 @@ function afficheScores(scores) {
             row.dataset.nom = joueur.nom;
             row.innerHTML = `
                 <td style="font-weight: bold; font-size: 1.7em;">
-                    <img alt="" width="40" height="40" style="margin-right: 8px; vertical-align: middle;">
                     <span class="score-name"></span>
                 </td>
                 <td class="text-end score-value" style="font-weight: bold; font-size: 2.3em;"></td>
             `;
         }
 
-        const img = row.querySelector('img');
-        if (img && img.getAttribute('src') !== joueur.avatar) {
-            img.setAttribute('src', joueur.avatar);
-        }
         const nameSpan = row.querySelector('.score-name');
         if (nameSpan) {
             nameSpan.textContent = joueur.nom;
