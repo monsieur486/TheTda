@@ -28,7 +28,7 @@ body::before {
     position: fixed;
     inset: 0;
     background: url("/img/fond.png") center / contain no-repeat;
-    opacity: 0.2;
+    opacity: 0.1;
     pointer-events: none;
     z-index: -1;
 }
