@@ -31,7 +31,10 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("/img/fond.png") center / contain no-repeat;
+    background-image: url("/img/fond.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
     opacity: 0.2;
     pointer-events: none;
     z-index: 0;
