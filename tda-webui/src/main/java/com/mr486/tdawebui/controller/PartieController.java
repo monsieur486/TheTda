@@ -41,6 +41,8 @@ public class PartieController {
             ResponseEntity<PartieForm> response = partieService.getPartie(numPartie);
 
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                int status = reunionService.reunionActiveStatus();
+                model.addAttribute("status", status);
                 model.addAttribute("numPartie", numPartie);
                 model.addAttribute("joueurs", partieService.getJoueursListe());
                 model.addAttribute("nbJoueurs", partieService.joueursInscrits());
@@ -95,7 +97,7 @@ public class PartieController {
             ResponseEntity<Void> response = partieService.updatePartie(numPartie, partieForm);
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                return "redirect:/admin/reunion";
+                return "redirect:/";
             }
 
             model.addAttribute("errorMessage",
@@ -114,6 +116,8 @@ public class PartieController {
     }
 
     private void populateFormModel(Model model, PartieForm partieForm) {
+        int status = reunionService.reunionActiveStatus();
+        model.addAttribute("status", status);
         model.addAttribute("joueurs", partieService.getJoueursListe());
         model.addAttribute("nbJoueurs", partieService.joueursInscrits());
         model.addAttribute("contrats", partieService.getContratsListe());

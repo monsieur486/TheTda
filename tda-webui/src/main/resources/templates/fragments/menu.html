@@ -2,7 +2,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="menu">
-    <nav class="navbar bg-primary fixed-top">
+    <nav class="navbar navbar-dark bg-primary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="/img/atout21.png" style="display: inline-block; width: 20px; height: 40px;">
@@ -21,12 +21,12 @@
                     th:if="${status == 2}" type="button">
                 💶 Cagnotte
             </button>
-            <button class="btn btn-danger"
+            <button class="btn btn-warning"
                     data-bs-target="#razModal"
                     data-bs-toggle="modal"
                     sec:authorize="isAuthenticated()"
                     th:if="${status == 3}" type="button">
-                🗑️ RAZ
+                ♻️️ RAZ
             </button>
             <button aria-controls="offcanvasNavbar" aria-label="Toggle navigation" class="navbar-toggler"
                     data-bs-target="#offcanvasNavbar"
