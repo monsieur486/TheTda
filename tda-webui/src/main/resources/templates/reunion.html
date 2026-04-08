@@ -14,22 +14,22 @@
         <div class="alert alert-danger" th:text="${errorMessage}"></div>
     </div>
     <div class="mt-3" th:if="${status == 1}">
-        <form th:action="@{/admin/reunion}" method="post">
+        <form method="post" th:action="@{/admin/reunion}">
             <div class="mb-2">
                 <strong>Sélectionne les joueurs (4 à 6) :</strong>
             </div>
 
-            <div th:if="${amis == null or #lists.isEmpty(amis)}" class="alert alert-warning">
+            <div class="alert alert-warning" th:if="${amis == null or #lists.isEmpty(amis)}">
                 Aucun ami disponible.
             </div>
 
             <div th:if="${amis != null and !#lists.isEmpty(amis)}">
                 <div class="form-check" th:each="a : ${amis}">
                     <input class="form-check-input"
-                           type="checkbox"
                            name="amiIds"
                            th:id="${'ami_' + a.id}"
-                           th:value="${a.id}"/>
+                           th:value="${a.id}"
+                           type="checkbox"/>
                     <label class="form-check-label"
                            th:for="${'ami_' + a.id}"
                            th:text="${a.nom}">

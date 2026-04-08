@@ -23,7 +23,7 @@ public class ReunionService {
     private final ServerStateWsController serverStateWsController;
 
     private final RestTemplate restTemplate;
-    @Value( "${app.tda-core.api-url}")
+    @Value("${app.tda-core.api-url}")
     private String coreApiUrl;
 
     private ResponseEntity<EtatReunion> getEtatReunion() {

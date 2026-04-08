@@ -1,6 +1,5 @@
 package com.mr486.tdawebui.service;
 
-import com.mr486.tdawebui.dto.AmiListe;
 import com.mr486.tdawebui.dto.ContratListe;
 import com.mr486.tdawebui.dto.JoueurListe;
 import com.mr486.tdawebui.dto.PartieForm;
@@ -25,7 +24,7 @@ public class PartieService {
     private final ServerStateWsController serverStateWsController;
 
     private final RestTemplate restTemplate;
-    @Value( "${app.tda-core.api-url}")
+    @Value("${app.tda-core.api-url}")
     private String coreApiUrl;
 
     private ResponseEntity<ContratListe[]> getContrats() {

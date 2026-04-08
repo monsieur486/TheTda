@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -18,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 public class EtatReunionController {
 
     private final RestTemplate restTemplate;
-    @Value( "${app.tda-core.api-url}")
+    @Value("${app.tda-core.api-url}")
     private String coreApiUrl;
 
     @RequestMapping("/etatReunion")

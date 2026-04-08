@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorMessage {
-  Integer status;
-  String message;
+    Integer status;
+    String message;
 
-  public Boolean critical() {
-    return this.status != null && this.status >= 500;
-  }
+    public Boolean critical() {
+        return this.status != null && this.status >= 500;
+    }
 }

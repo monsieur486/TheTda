@@ -18,10 +18,10 @@ function connect() {
 }
 
 function updateState(state) {
-    if(state.level === 100) recuperationData();
+    if (state.level === 100) recuperationData();
 }
 
-function recuperationData(){
+function recuperationData() {
     axios.get('/api/public/etatReunion')
         .then(response => {
             const data = response.data;
@@ -142,18 +142,18 @@ function afficheParties(parties) {
     manchesDiv.innerHTML = `
         <ul class="list-group mt-3">
             ${parties.map((p, index) => {
-                const content = escapeHtml(p);
-                if (!isAuthenticated) {
-                    return `<li class="list-group-item">${content}</li>`;
-                }
-                const editUrl = `/admin/partie/${index + 1}`;
-                return `
+        const content = escapeHtml(p);
+        if (!isAuthenticated) {
+            return `<li class="list-group-item">${content}</li>`;
+        }
+        const editUrl = `/admin/partie/${index + 1}`;
+        return `
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>${content}</span>
                         <a class="btn btn-sm btn-outline-primary" href="${editUrl}">✏️ Modifier</a>
                     </li>
                 `;
-            }).join('')}
+    }).join('')}
         </ul>
     `;
 

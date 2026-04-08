@@ -1,7 +1,6 @@
 package com.mr486.tdawebui.socket;
 
 
-
 import com.mr486.tdawebui.model.ServerState;
 import com.mr486.tdawebui.service.ServerStateService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
