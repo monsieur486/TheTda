@@ -62,7 +62,7 @@ public class SecurityConfig {
                         form -> form
                                 .loginPage("/")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/admin/reunion", true)
+                                .defaultSuccessUrl("/", true)
                                 .permitAll()
                 )
                 .logout(logout -> logout

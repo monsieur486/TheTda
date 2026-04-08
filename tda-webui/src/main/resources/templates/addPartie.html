@@ -14,7 +14,6 @@
         <div class="alert alert-danger" th:text="${errorMessage}"></div>
     </div>
     <div class="container mt-4">
-        <h2>Nouvelle Partie</h2>
         <form method="post" th:action="@{/admin/partie/}" th:object="${partieForm}">
             <div class="row">
                 <div class="row align-items-center mb-3" th:if="${nbJoueurs == 6}">

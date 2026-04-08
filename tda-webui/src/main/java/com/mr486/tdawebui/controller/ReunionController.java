@@ -65,7 +65,7 @@ public class ReunionController {
             ResponseEntity<Void> response = reunionService.cagnotte();
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                return "redirect:/admin/reunion";
+                return "redirect:/";
             }
 
             redirectAttributes.addFlashAttribute("errorMessage",
@@ -87,7 +87,7 @@ public class ReunionController {
             ResponseEntity<Void> response = reunionService.raz();
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                return "redirect:/admin/reunion";
+                return "redirect:/";
             }
 
             redirectAttributes.addFlashAttribute("errorMessage",

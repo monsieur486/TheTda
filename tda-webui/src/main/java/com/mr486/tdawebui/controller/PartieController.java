@@ -3,6 +3,7 @@ package com.mr486.tdawebui.controller;
 import com.mr486.tdawebui.dto.ErrorMessage;
 import com.mr486.tdawebui.dto.PartieForm;
 import com.mr486.tdawebui.service.PartieService;
+import com.mr486.tdawebui.service.ReunionService;
 import com.mr486.tdawebui.tools.ErrorResponseTools;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +21,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class PartieController {
 
     private final PartieService partieService;
+    private final ReunionService reunionService;
     private final ErrorResponseTools errorResponseTools;
 
     @GetMapping("/partie")
     public String getReunion(Model model) {
+        int status = reunionService.reunionActiveStatus();
+        model.addAttribute("status", status);
         model.addAttribute("joueurs", partieService.getJoueursListe());
         model.addAttribute("nbJoueurs", partieService.joueursInscrits());
         model.addAttribute("contrats", partieService.getContratsListe());
